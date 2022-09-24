@@ -74,15 +74,39 @@
               <span>All</span>
               <img src="./img/icon/toggle.png" alt="">
             </div>
-            <div class="box" id="list">
-              
+            <div class="todoBox" id="todo-list">
+              <!-- a to-do -->
+              <!-- <div class="box todo" id="">
+                <div class="head">
+                  <img src="./img/icon/check1.png" alt="">
+                  <span>innertext</span>
+                </div>
+                <img src="./img/icon/trash.png" alt="">
+              </div> -->
+              <!-- a to-do -->
             </div>
-            <div class="add">
-              <button>
-                <img src="./img/icon/plus.png" alt="">
-                <span>Add your new task</span>
-              </button>
+            <div id="add-button" class="add-button">
+              <img src="./img/icon/plus3.png" alt="">
+              Add your new task
             </div>
+            <form class="addForm hidden">
+              <div class="close-row">
+                <img src="./img/icon/x-mark.png" alt="">
+              </div>
+              <input class="input1" type="text" placeholder="What do you need to do?">
+              <div id="tag-list">
+                <!-- add tags here -->
+                <button class="tag" id="meeting">
+                  Meeting
+                </button>
+                <div id="plus-button">
+                  <img src="./img/icon/plus2.png" alt="">
+                </div>
+              </div>
+              <div class="save-row">
+                <input type="submit" id="save-button" value="Save">
+              </div>
+            </form>
           </div>
         </div>
         <div class="col3">
