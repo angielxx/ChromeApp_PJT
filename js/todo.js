@@ -1,9 +1,9 @@
 
 // tag form 관련
 const addTagButton = document.querySelector('#plus-button')
-const tagForm = document.querySelector('#addForm-tag')
-const closeTagButton = document.querySelector('#addForm-tag .close-row img')
-const tagInput = document.querySelector('#addForm-tag input')
+const tagForm = document.querySelector('.addForm-tag')
+const closeTagButton = document.querySelector('.addForm-tag .close-row img')
+const tagInput = document.querySelector('.addForm-tag input')
 const tagList = document.querySelector('#tag-list #select')
 
 // todo form 관련
@@ -146,6 +146,7 @@ function onAddTagClick(event) {
 function onTagCloseClick(event) {
     event.preventDefault()
     tagForm.classList.add('hidden')
+    console.log('clicked')
 }
 
 // tags 객체 저장

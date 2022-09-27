@@ -384,13 +384,28 @@ body {
     object-fit: none;
 }
 
-#addForm-tag {
+.addForm-tag {
     position: absolute;
-    bottom: 20px;
+    /* bottom: 20px; */
     display: flex;
+    color: white;
+    height: 30px;
+    object-fit: none;
+    background-color: #8FBCFF;
+    border-radius: 5px;
+    justify-content: center;
 }
 
-#addForm-tag input {
+.addForm-tag::placeholder {
+    color: white;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.addForm-tag input {
     border: none;
     background-color: transparent;
     color: white;
