@@ -95,16 +95,26 @@
               </div>
               <input class="input1" type="text" placeholder="What do you need to do?">
               <div id="tag-list">
-                <!-- add tags here -->
-                <button class="tag" id="meeting">
-                  Meeting
-                </button>
+                <ul id="select">
+                  <!-- add tags here -->
+                    <!-- <button class="tag" id="id">태그이름</button> -->
+                  <!-- <button class="tag" id="meeting">
+                    Meeting
+                  </button> -->
+                </ul>
                 <div id="plus-button">
                   <img src="./img/icon/plus2.png" alt="">
                 </div>
               </div>
               <div class="save-row">
                 <input type="submit" id="save-button" value="Save">
+              </div>
+            </form>
+            <!-- add new tag input -->
+            <form id="addForm-tag" class="hidden">
+              <input class="input1" type="text" placeholder="Add new tag.">
+              <div class="close-row">
+                <img src="./img/icon/x-mark.png" alt="">
               </div>
             </form>
           </div>

@@ -274,6 +274,7 @@ body {
 
 
 /* end : todoBox */
+
 .add-button {
     width: 100%;
     height: 40px;
@@ -295,7 +296,7 @@ body {
     margin-right: 8px;
 }
 
-
+/* start : addForm */
 .addForm {
     background-color: var(--blue1);
     width: 298px;
@@ -337,8 +338,15 @@ body {
 
 #tag-list {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 20px;
+    width: 100%;
+}
+
+#select {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .tag {
@@ -348,10 +356,15 @@ body {
     height: 30px;
     padding: 0 10px;
     text-align: center;
+    vertical-align: mi;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 15px;
     margin-right: 10px;
     cursor: pointer;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 #plus-button {
@@ -369,6 +382,20 @@ body {
     width: 30px;
     height: auto;
     object-fit: none;
+}
+
+#addForm-tag {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+}
+
+#addForm-tag input {
+    border: none;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    outline: none;
 }
 
 .save-row {
