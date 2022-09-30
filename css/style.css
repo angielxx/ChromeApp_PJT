@@ -102,6 +102,7 @@ body {
     padding: 38px 50px 50px 50px;
 }
 
+/* start : bookmark */
 .bookmark {
     display: flex;
     font-size: 0.8rem;
@@ -117,10 +118,49 @@ body {
     margin-right: 36px;
 }
 
-.bookmark-title img {
-    width: 17px;
-    height: 17px;
-    margin-right: 6px;
+.plus-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: var(--blue1);
+    margin-right: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+
+    transition-property: width;
+    transition-duration: 1s;
+}
+
+.plus-btn img {
+    width: 16px;    
+    height: auto;    
+}
+
+.plus-form {
+    width: 300px;
+}
+
+.bookmarkForm {
+    display: flex;
+    padding: 0px 8px;
+}
+
+.bookmarkForm input:nth-child(1) {
+    width: 40%;
+}
+
+.bookmarkForm input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.bookmarkForm input::placeholder {
+    color: white;
+    opacity: 50%;
 }
 
 .bookmark-title h3 {
@@ -143,6 +183,10 @@ body {
 .a-bookmark img {
     margin-right: 6px;
 }
+
+
+
+/* end : bookmark */
 /* ///////////start : main/////////// */
 
 .main {
@@ -151,6 +195,8 @@ body {
     /* border: 1px solid rgb(207, 207, 207); */
     display: flex;
 }
+
+
 
 /* start : 박스 공통 스타일 */
 .box {
@@ -176,6 +222,8 @@ body {
     /* opacity: 50%; */
 }
 /* end : 박스 공통 스타일 */
+
+
 
 /* start : col1 */
 .col1 {

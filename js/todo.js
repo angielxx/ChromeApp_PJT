@@ -146,7 +146,6 @@ function onAddTagClick(event) {
 function onTagCloseClick(event) {
     event.preventDefault()
     tagForm.classList.add('hidden')
-
 }
 
 // tags 객체 저장

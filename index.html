@@ -24,10 +24,18 @@
     </div>
   </div>
   <div id="appBox">
-    <div class="app"> 
+    <div class="app">
       <div id="bookmark" class="bookmark">
         <div class="bookmark-title">
-          <img src="./img/icon/plus.png" alt="">
+          <button class="plus-btn">
+            <img src="./img/icon/plus2.png" alt="">
+            <form action="" class="bookmarkForm hidden">
+              <input type="text" placeholder="Name">
+              <input type="url" name="" id="" placeholder="URL">
+              <input type="submit" value="" class="hidden">
+            </form>
+            <img src="./img/icon/x-mark.png" alt="" class="close hidden">
+          </button>
           <h3>BOOKMARK</h3>
         </div>
         <div class="bookmark-list">
@@ -198,7 +206,6 @@
   <script src="./js/todo.js"></script>
   <script src="./js/weather.js"></script>
   <script src="./js/music.js"></script>
-  <!-- SPOTIFY SDK SCRIPT -->
-  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  <script src="./js/bookmark.js"></script>
 </body>
 </html>
