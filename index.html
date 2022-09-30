@@ -120,13 +120,44 @@
           </div>
         </div>
         <div class="col3">
-          <div id="music" class="box"></div>
+          <div id="music" class="box">
+            <div class="player">
+              <div class="music-info">
+                <div class="album-cover">
+                  <!-- add cover here -->
+                </div>
+                <div class="title">
+                  <h3>Title</h3>
+                </div>
+              </div>
+              <div class="timeline">
+                <hr>
+              </div>
+              <div class="player-btns">
+                <div>
+                  <img class="shuffle" src="./img/icon/shuffle.png" alt="">
+                </div>
+                <div>
+                  <img class="back" src="./img/icon/back.png" alt="">
+                </div>
+                <div>
+                  <img class="play" src="./img/icon/play.png" alt="">
+                </div>
+                <div>
+                  <img class="next" src="./img/icon/next.png" alt="">
+                </div>
+                <div>
+                  <img class="repeat" src="./img/icon/repeat.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
           <div id="weather" class="box">
             <div class="box-head">
               <h1>weather</h1>
               <hr>
             </div>
-            <div>
+            <div class="wrap">
 
               <!-- Today weather -->
               <div id="today" class="row">
@@ -135,7 +166,7 @@
                   <div class="today-icon">
                     <!-- add icon here -->
                   </div>
-                  <div>
+                  <div class="today-info">
                     <h5 class="today-main"></h5>
                     <h6 class="location"></h6>
                   </div>
@@ -147,16 +178,7 @@
                 <h4 class="left">Daily<br> Forecast</h4>
                 <div class="right">
                   <!-- start : for문으로 추가 -->
-                  <div class="day">
-                    <div class="date">
-                      <h5></h5>
-                      <h6></h6>
-                    </div>
-                    <div class="daily-main">
-                      <img src="" alt="">
-                      <h5></h5>
-                    </div>
-                  </div>
+                  
                   <!-- end : for문으로 추가 -->
                 </div>
               </div>
@@ -175,5 +197,8 @@
   <script src="./js/quotes.js"></script>
   <script src="./js/todo.js"></script>
   <script src="./js/weather.js"></script>
+  <script src="./js/music.js"></script>
+  <!-- SPOTIFY SDK SCRIPT -->
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
 </body>
 </html>

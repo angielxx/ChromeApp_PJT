@@ -30,7 +30,7 @@ function savedTodos() {
 // todo 삭제
 function deleteTodo(event) {
     const check = event.currentTarget.parentNode
-    console.log(check)
+
     check.remove()
     toDos = toDos.filter((todo) => todo.id !== parseInt(check.id))
     savedTodos()
@@ -132,7 +132,7 @@ function showTags(newTag) {
     option.id = newTag.id
     option.value = newTag.text
     option.innerText = newTag.text
-    console.log(option)
+
     tagList.appendChild(option)
 }
 
@@ -146,7 +146,7 @@ function onAddTagClick(event) {
 function onTagCloseClick(event) {
     event.preventDefault()
     tagForm.classList.add('hidden')
-    console.log('clicked')
+
 }
 
 // tags 객체 저장
@@ -165,7 +165,7 @@ function onTagSubmit(event) {
     }
     tags.push(tagObj)
     showTags(tagObj)
-    console.log('give me my tag!')
+
     saveTags()
 
     tagForm.classList.add('hidden')
