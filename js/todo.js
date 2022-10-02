@@ -44,7 +44,7 @@ function checkTodo(event) {
     let check = event.currentTarget.parentNode.parentNode
     let theId = check.id
     let todo = toDos.find((todo) => todo.id === parseInt(theId))
-    let span = checkImg.parentNode.querySelector('span')
+    let span = checkImg.parentNode.querySelector('.todo-text')
     if (todo.status === 'unchecked') {
         todo.status = 'checked'
         checkImg.src = "./img/icon/check2.png"
@@ -69,6 +69,16 @@ function showlist(newTodo) {
     
     const span = document.createElement('span')
     span.innerText = newTodo.text
+    span.classList.add('todo-text')
+
+    const tag = document.createElement('span')
+    tag.classList.add('tag-on-list')
+    tagObj = localStorage.getItem(TAGS_KEY)
+    const parsedTags = JSON.parse(tagObj)
+    tags = parsedTags
+    // typeof newTodo.tag = string
+    let theTag = tags.find((tag) => tag.id === parseInt(newTodo.tag))
+    tag.innerText = theTag.text
     
     const checkImg = document.createElement('img')
     if (newTodo.status === 'unchecked') {
@@ -87,6 +97,7 @@ function showlist(newTodo) {
     outerDiv.appendChild(innerDiv)
     outerDiv.appendChild(trashImg)
     innerDiv.appendChild(checkImg)
+    innerDiv.appendChild(tag)
     innerDiv.appendChild(span)
     todoList.appendChild(outerDiv)
 }
@@ -170,6 +181,7 @@ function onTodoSubmit(event) {
     
     todoForm.classList.add('hidden')
     tagForm.classList.add('hidden')
+    addButton.classList.remove('hidden')
     // 높이변화
     addWrap.classList.add('height1')
     addWrap.classList.remove('height2')

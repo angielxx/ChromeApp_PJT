@@ -260,7 +260,7 @@ body {
 }
 
 #greeting {
-    height: 160px;
+    height: 140px;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -268,6 +268,9 @@ body {
 #clock {
     height: 90px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #clock .clock-box {
@@ -275,13 +278,54 @@ body {
 }
 
 #clock .time {
-    width: 60%;
+    width: 61%;
+    margin-right: 4px;
 }
 
 #quote {
-    height: 168px;
+    height: 188px;
     text-align: center;
+    font-size: 14px;
 }
+
+.quote-body {
+    overflow: scroll;
+    height: 100px;
+    padding: 0px 8px;
+}
+
+/* ::-webkit-scrollbar : 스크롤바 전체
+::-webkit-scrollbar-thumb : 스크롤 막대
+::-webkit-scrollbar-track : 스크롤 막대 외부 */
+
+.quote-body::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+}
+
+.quote-body::-webkit-scrollbar-thumb {
+    background-color: rgb(151, 151, 151);
+    border-radius: 5px;
+    width: 1px;
+}
+
+.quote-body::-webkit-scrollbar-track {
+    background-color: rgb(211, 211, 211);
+    border-radius: 5px;
+}
+
+.quote-body p {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    line-height: 1.1rem;
+}
+
+.quote-body span {
+    font-size: 10px;
+    color: grey;
+}
+
 /* end : col1 */
 
 /* start : col2 */
@@ -328,14 +372,29 @@ body {
     margin-bottom: 8px;
 }
 
-.todo img {
+.todo img:nth-last-child(1) {
     cursor: pointer;
     position: relative;
-    top: 2px;
+    top: 3px;
 }
 
 .checked {
     text-decoration: line-through;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+}
+
+.tag-on-list {
+    width: auto;
+    height: auto;
+    font-size: 12px;
+    background-color: #24EFBE;
+    padding: 4px 8px;
+    margin-right: 6px;
+    border-radius: 10px;
 }
 
 /* check button */
@@ -344,7 +403,6 @@ body {
     width: 16px;
     cursor: pointer;
     position: relative;
-    top: 3px;
 }
 
 
