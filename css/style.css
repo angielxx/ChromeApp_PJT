@@ -21,7 +21,6 @@ body h1 {
 
 .hidden {
     display: none;
-    transition: opacity 3s ease-in-out;
 }
 
 html, body {
@@ -146,6 +145,21 @@ body {
 .bookmarkForm {
     display: flex;
     padding: 0px 8px;
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+    animation-name: fade-in;
+    animation-duration: 2s;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .bookmarkForm input:nth-child(1) {
@@ -156,6 +170,7 @@ body {
     border: none;
     background-color: transparent;
     outline: none;
+    opacity: 1;
 }
 
 .bookmarkForm input::placeholder {
@@ -168,16 +183,25 @@ body {
     font-weight: 600;
 }
 
+.bookmark-close {
+    opacity: 1;
+    transform: rotate(45deg);
+    animation-name: fade-in;
+    animation-duration: 2s;
+}
+
 /* bookmark list */
 .bookmark-list {
     display: flex;
-    flex-direction: column;
 }
 
 .a-bookmark {
     display: flex;
+    align-items: center;
     font-weight: 400;
     text-decoration: none;
+    margin-right: 8px;
+    color: black;
 }
 
 .a-bookmark img {
@@ -323,6 +347,19 @@ body {
 
 /* end : todoBox */
 
+.add-wrap {
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    bottom: -20px;
+    background-color: black;
+}
+
+.wrap-height {
+    height: 298px;
+    transition-property: ;
+}
+
 .add-button {
     width: 100%;
     height: 40px;
@@ -436,7 +473,7 @@ body {
 
 .addForm-tag {
     position: absolute;
-    /* bottom: 20px; */
+    bottom: 20px;
     display: flex;
     color: white;
     height: 30px;
@@ -453,6 +490,7 @@ body {
 
 .hidden {
     display: none;
+    opacity: 0;
 }
 
 .addForm-tag input {

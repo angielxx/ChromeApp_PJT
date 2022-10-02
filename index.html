@@ -25,26 +25,31 @@
   </div>
   <div id="appBox">
     <div class="app">
+      <!-- start : bookmark -->
       <div id="bookmark" class="bookmark">
         <div class="bookmark-title">
           <button class="plus-btn">
             <img src="./img/icon/plus2.png" alt="">
             <form action="" class="bookmarkForm hidden">
-              <input type="text" placeholder="Name">
-              <input type="url" name="" id="" placeholder="URL">
+              <input type="text" placeholder="Name" class="bookmark-name">
+              <input type="url" placeholder="URL" class="bookmark-link">
               <input type="submit" value="" class="hidden">
             </form>
-            <img src="./img/icon/x-mark.png" alt="" class="close hidden">
+            <img src="./img/icon/plus2.png" alt="" class="bookmark-close hidden">
           </button>
           <h3>BOOKMARK</h3>
         </div>
         <div class="bookmark-list">
-          <a class="a-bookmark" href="https://naver.com">
+          <!-- start : bookmark element -->
+          <!-- <a class="a-bookmark" href="https://naver.com">
             <img src="./img/icon/folder.png" alt="">
             <h3>Naver</h3>
-          </a>
+          </a> -->
+          <!-- end : bookmark element -->
         </div>
       </div>
+      <!-- end : bookmark -->
+      <!-- start : main -->
       <div class="main">
         <div class="col1">
           <div id="greeting" class="box">
@@ -93,31 +98,33 @@
               </div> -->
               <!-- a to-do -->
             </div>
-            <div id="add-button" class="add-button">
-              <img src="./img/icon/plus3.png" alt="">
-              Add your new task
-            </div>
-            <form class="addForm hidden">
-              <div class="close-row">
-                <img src="./img/icon/x-mark.png" alt="">
+            <div class="add-wrap">
+              <div id="add-button" class="add-button">
+                <img src="./img/icon/plus3.png" alt="">
+                Add your new task
               </div>
-              <input class="input1" type="text" placeholder="What do you need to do?" required>
-              <div id="tag-list">
-                <ul id="select">
-                  <!-- add tags here -->
-                    <!-- <button class="tag" id="id">태그이름</button> -->
-                  <!-- <button class="tag" id="meeting">
-                    Meeting
-                  </button> -->
-                </ul>
-                <div id="plus-button">
-                  <img src="./img/icon/plus2.png" alt="">
+              <form class="addForm hidden">
+                <div class="close-row">
+                  <img src="./img/icon/x-mark.png" alt="">
                 </div>
-              </div>
-              <div class="save-row">
-                <input type="submit" id="save-button" value="Save">
-              </div>
-            </form>
+                <input class="input1" type="text" placeholder="What do you need to do?" required>
+                <div id="tag-list">
+                  <ul id="select">
+                    <!-- add tags here -->
+                      <!-- <button class="tag" id="id">태그이름</button> -->
+                    <!-- <button class="tag" id="meeting">
+                      Meeting
+                    </button> -->
+                  </ul>
+                  <div id="plus-button">
+                    <img src="./img/icon/plus2.png" alt="">
+                  </div>
+                </div>
+                <div class="save-row">
+                  <input type="submit" id="save-button" value="Save">
+                </div>
+              </form>
+            </div>
             <!-- add new tag input -->
             <form class="addForm-tag hidden">
               <input class="input1" type="text" placeholder="Add new tag.">
@@ -195,7 +202,7 @@
           </div>
         </div>
       </div>
-
+      <!-- end : main -->
     </div>
   </div>
 

@@ -7,6 +7,7 @@ const tagInput = document.querySelector('.addForm-tag input')
 const tagList = document.querySelector('#tag-list #select')
 
 // todo form 관련
+const addWrap = document.querySelector('.add-wrap')
 const addButton = document.querySelector('#add-button')
 const todoForm = document.querySelector('.addForm')
 const closeButton = document.querySelector('.addForm .close-row img')
@@ -23,7 +24,7 @@ let tags = [];
 
 ///////////////////// start : todoForm ///////////////////////
 // toDos 객체 저장
-function savedTodos() {
+function saveTodos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos))
 }
 
@@ -33,7 +34,7 @@ function deleteTodo(event) {
 
     check.remove()
     toDos = toDos.filter((todo) => todo.id !== parseInt(check.id))
-    savedTodos()
+    saveTodos()
 }
 
 // todo status에 따라 체크 하기
@@ -52,7 +53,7 @@ function checkTodo(event) {
         checkImg.src = "./img/icon/check1.png"
         span.classList.remove('checked')
     }
-    savedTodos()
+    saveTodos()
 }
 
 // todo 보여주기
@@ -93,6 +94,7 @@ function showlist(newTodo) {
 function onAddClick(event) {
     event.preventDefault()
     todoForm.classList.remove('hidden')
+    addWrap.classList.add('wrap-height')
 }
 
 //  todoForm 닫기
@@ -116,7 +118,7 @@ function onTodoSubmit(event) {
     }
     toDos.push(todoObj)
     showlist(todoObj)
-    savedTodos()
+    saveTodos()
     
     todoForm.classList.add('hidden')
     tagForm.classList.add('hidden')
@@ -140,6 +142,7 @@ function showTags(newTag) {
 function onAddTagClick(event) {
     event.preventDefault()
     tagForm.classList.remove('hidden')
+
 }
 
 // tagForm 닫기
