@@ -135,7 +135,9 @@ body {
 
 .plus-btn img {
     width: 16px;    
-    height: auto;    
+    height: auto;
+    animation-name: fade-in;
+    animation-duration: 1s;
 }
 
 .plus-form {
@@ -171,6 +173,7 @@ body {
     background-color: transparent;
     outline: none;
     opacity: 1;
+    color: white;
 }
 
 .bookmarkForm input::placeholder {
@@ -348,32 +351,39 @@ body {
 /* end : todoBox */
 
 .add-wrap {
-    width: 100%;
-    height: 40px;
+    width: 298px;
     position: absolute;
-    bottom: -20px;
-    background-color: black;
+    bottom: 20px;
+    background-color: var(--blue1);
+    color: white;
+    border-radius: 20px;
+    transition: height 2s;
+    overflow: hidden;
 }
 
-.wrap-height {
-    height: 298px;
-    transition-property: ;
+.height1 {
+    height: 40px;
+    transition: all 1s;
+}
+.height2 {
+    height: 240px;
+    transition: all 1s;
 }
 
 .add-button {
-    width: 100%;
     height: 40px;
-    border-radius: 20px;
-    background-color: var(--blue1);
-    color: white;
+    background-color: transparent;
+    /* color: white; */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 
     width: 298px;
-    position: absolute;
-    bottom: 20px;
+    /* position: absolute;
+    bottom: 20px; */
+    animation-name: fade-in;
+    animation-duration: 1s;
 }
 
 .add-button img {
@@ -385,16 +395,15 @@ body {
 
 /* start : addForm */
 .addForm {
-    background-color: var(--blue1);
+    background-color: transparent;
     width: 298px;
     height: auto;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 20px;
-
-    position: absolute;
-    bottom: 20px;
-    /* display: flex; */
+    
+    animation-name: fade-in;
+    animation-duration: 1s;
 }
 
 .close-row {
@@ -437,7 +446,8 @@ body {
 }
 
 .tag {
-    background-color: #24EFBE;
+    background-color: #75ffd6;
+    color: black;
     border: none;
     width: auto;
     height: 30px;
@@ -452,6 +462,11 @@ body {
     display: flex;
     align-items: center;
     position: relative;
+}
+
+.tag-clicked {
+    background-color: #00b48a;
+    color: white;
 }
 
 #plus-button {

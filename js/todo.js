@@ -5,6 +5,7 @@ const tagForm = document.querySelector('.addForm-tag')
 const closeTagButton = document.querySelector('.addForm-tag .close-row img')
 const tagInput = document.querySelector('.addForm-tag input')
 const tagList = document.querySelector('#tag-list #select')
+// const tagbtn = document.querySelector('.tag')
 
 // todo form 관련
 const addWrap = document.querySelector('.add-wrap')
@@ -90,11 +91,48 @@ function showlist(newTodo) {
     todoList.appendChild(outerDiv)
 }
 
+// todoForm 열고 닫을 때 선택된 tag 없애기 위해 위로 이동
+// tag 보여주기
+function showTags(newTag) {
+    const option = document.createElement('div')
+    option.classList.add('tag')
+    option.id = newTag.id
+    option.value = newTag.text
+    option.innerText = newTag.text
+
+    tagList.appendChild(option)
+    option.addEventListener('click', onTagClick)
+}
+
+////todoForm에서 tag 선택 시
+// tag를 전역변수로
+tagId = ''
+
+// tag 클릭 시 전역변수 tagId 변경
+function onTagClick(event) {
+    tagId = event.target.id
+
+    // 클릭한 tag를 tag-clicked 클래스 추가
+    // tagbtn = nodelist
+    const tagbtn = document.querySelectorAll('.tag')
+    // tagId랑 같은 태그만 클래스 추가
+    tagbtn.forEach(function (element) {
+        if (element.id === tagId) {
+            element.classList.add('tag-clicked')
+        } else {
+            element.classList.remove('tag-clicked')
+        }
+    })
+}
+
 // todoForm 열기
 function onAddClick(event) {
     event.preventDefault()
     todoForm.classList.remove('hidden')
-    addWrap.classList.add('wrap-height')
+    addButton.classList.add('hidden')
+    // 높이변화
+    addWrap.classList.remove('height1')
+    addWrap.classList.add('height2')
 }
 
 //  todoForm 닫기
@@ -102,6 +140,15 @@ function onCloseClick(event) {
     event.preventDefault()
     todoForm.classList.add('hidden')
     tagForm.classList.add('hidden')
+    addButton.classList.remove('hidden')
+    // 높이변화
+    addWrap.classList.add('height1')
+    addWrap.classList.remove('height2')
+    tagId = ''
+    const tagbtn = document.querySelectorAll('.tag')
+    tagbtn.forEach(element => {
+        element.classList.remove('tag-clicked')
+    });
 }
 
 
@@ -112,37 +159,31 @@ function onTodoSubmit(event) {
     todoInput.value = ''
     const todoObj = {
         text: newTodo,
-        // tag: theTag,
+        tag: tagId,
         status: 'unchecked',
         id: Date.now()
     }
     toDos.push(todoObj)
     showlist(todoObj)
     saveTodos()
+    tagId = ''
     
     todoForm.classList.add('hidden')
     tagForm.classList.add('hidden')
+    // 높이변화
+    addWrap.classList.add('height1')
+    addWrap.classList.remove('height2')
 }
 ///////////////////// end : todoForm ///////////////////////
 
 
 ///////////////////// start : tagForm ///////////////////////
-// tag 보여주기
-function showTags(newTag) {
-    const option = document.createElement('option')
-    option.classList.add('tag')
-    option.id = newTag.id
-    option.value = newTag.text
-    option.innerText = newTag.text
 
-    tagList.appendChild(option)
-}
 
 // tagForm 열기
 function onAddTagClick(event) {
     event.preventDefault()
     tagForm.classList.remove('hidden')
-
 }
 
 // tagForm 닫기

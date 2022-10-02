@@ -45,8 +45,8 @@ function showMarks(newMark) {
 function onBookmarkSubmit(event) {
   const name = bookmarkName.value;
   const link = bookmarkLink.value;
-  console.log(name)
-  console.log(link)
+  name = ''
+  link = ''
   const MarkObj = {
     text: name,
     url: link,
@@ -72,12 +72,15 @@ function onPlusClick(event) {
 
 // Bookmark Form 닫기
 function onCloseClick(event) {
+  const name = bookmarkName.value;
+  const link = bookmarkLink.value;
   plusbtn.classList.remove('plus-form');
   bookmarkForm.classList.add('hidden');
   plusImg.classList.remove('hidden');
   closebtn.classList.add('hidden');
-  console.log('cliced!!!!!!')
   plusImg.addEventListener('click', onPlusClick)
+  bookmarkLink.value = ''
+  bookmarkName.value = ''
 }
 
 const savedMarks = localStorage.getItem(BOOKMARKS_KEY)
