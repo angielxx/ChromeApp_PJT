@@ -7,6 +7,7 @@
     --font2: 'Noto Sans KR', sans-serif;
     --blue1: #3988FF;
     --grey1: #E9E9E9;
+    --grey2: #C9C9C9;
     --red1: #FF3E49;
     --green1: #24EFBE;
 }
@@ -211,7 +212,34 @@ body {
     margin-right: 6px;
 }
 
+/* 삭제, 수정 버튼 */
+.a-bookmark + div {
+    display: flex;
+    position: absolute;
+    margin-top: 4px;
+}
+.a-bookmark + div button {
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    background-color: var(--grey2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+}
 
+/* 삭제 */
+.bookmark-btns button:nth-child(2) {
+    transform: rotate(45deg);
+    background-color: var(--red1);
+    cursor: pointer;
+}
+
+.a-bookmark + div button img {
+    width: 15px;
+}
 
 /* end : bookmark */
 /* ///////////start : main/////////// */
@@ -228,11 +256,11 @@ body {
 /* start : 박스 공통 스타일 */
 .box {
     width: 100%;
-    border: 1px solid #E9E9E9;
+    border: 1px solid #f0f0f0;
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
-    /* drop-shadow */
+    box-shadow: 0px 0px 8px 5px #f3f3f3
 }
 
 .box h1 {
@@ -471,6 +499,9 @@ body {
 
 .close-row img {
     cursor: pointer;
+    width: 13px;
+    height: auto;
+    transform: rotate(45deg);
 }
 
 .addForm input {
@@ -509,14 +540,14 @@ body {
     border: none;
     width: auto;
     height: 30px;
-    padding: 0 10px;
+    padding: 0 8px;
     text-align: center;
     vertical-align: mi;
-    font-size: 16px;
+    font-size: 12px;
     border-radius: 15px;
-    margin-right: 10px;
+    margin-right: 6px;
     cursor: pointer;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
     position: relative;
@@ -529,36 +560,51 @@ body {
 
 #plus-button {
     background-color: #8FBCFF;
-    width: 30px;
+    width: auto;
     height: 30px;
-    border-radius: 5px;
+    border-radius: 15px;
     display: flex;
+    align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+#plus-button div {
+    background-color: #8FBCFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #plus-button img {
     color: white;
-    width: 30px;
+    width: 20px;
     height: auto;
-    object-fit: none;
+    object-fit:cover;
+    margin-right: 8px;
 }
 
 .addForm-tag {
     position: absolute;
-    bottom: 20px;
+    top: 72px;
+    left: 34px;
     display: flex;
     color: white;
-    height: 30px;
+    width: 230px;
+    height: 20px;
     object-fit: none;
     background-color: #8FBCFF;
     border-radius: 5px;
     justify-content: center;
+    align-items: center;
 }
 
-.addForm-tag::placeholder {
+.addForm-tag input::placeholder {
     color: white;
-    text-align: center;
+    /* text-align: center; */
+    opacity: 50%;
 }
 
 .hidden {
@@ -572,6 +618,7 @@ body {
     color: white;
     width: 100%;
     outline: none;
+    margin: 0px;
 }
 
 .save-row {

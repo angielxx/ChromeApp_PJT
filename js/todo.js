@@ -2,10 +2,10 @@
 // tag form 관련
 const addTagButton = document.querySelector('#plus-button')
 const tagForm = document.querySelector('.addForm-tag')
-const closeTagButton = document.querySelector('.addForm-tag .close-row img')
+const closeTagButton = document.querySelector('.addForm-tag .close-row')
 const tagInput = document.querySelector('.addForm-tag input')
 const tagList = document.querySelector('#tag-list #select')
-// const tagbtn = document.querySelector('.tag')
+const addTagDiv = document.querySelector('#plus-button div')
 
 // todo form 관련
 const addWrap = document.querySelector('.add-wrap')
@@ -71,14 +71,6 @@ function showlist(newTodo) {
     span.innerText = newTodo.text
     span.classList.add('todo-text')
 
-    const tag = document.createElement('span')
-    tag.classList.add('tag-on-list')
-    tagObj = localStorage.getItem(TAGS_KEY)
-    const parsedTags = JSON.parse(tagObj)
-    tags = parsedTags
-    // typeof newTodo.tag = string
-    let theTag = tags.find((tag) => tag.id === parseInt(newTodo.tag))
-    tag.innerText = theTag.text
     
     const checkImg = document.createElement('img')
     if (newTodo.status === 'unchecked') {
@@ -97,7 +89,20 @@ function showlist(newTodo) {
     outerDiv.appendChild(innerDiv)
     outerDiv.appendChild(trashImg)
     innerDiv.appendChild(checkImg)
-    innerDiv.appendChild(tag)
+    const tag = document.createElement('span')
+    tag.classList.add('tag-on-list')
+    tagObj = localStorage.getItem(TAGS_KEY)
+    const parsedTags = JSON.parse(tagObj)
+    tags = parsedTags
+    // typeof newTodo.tag = string
+    let theTag = tags.find((tag) => tag.id === parseInt(newTodo.tag))
+    if (newTodo.tag !== '') {
+        tag.innerText = theTag.text
+        innerDiv.appendChild(tag)
+    } else {
+        tag.innerText = ''
+    }
+
     innerDiv.appendChild(span)
     todoList.appendChild(outerDiv)
 }
@@ -111,7 +116,7 @@ function showTags(newTag) {
     option.value = newTag.text
     option.innerText = newTag.text
 
-    tagList.appendChild(option)
+    tagList.prepend(option)
     option.addEventListener('click', onTagClick)
 }
 
@@ -122,15 +127,19 @@ tagId = ''
 // tag 클릭 시 전역변수 tagId 변경
 function onTagClick(event) {
     tagId = event.target.id
+    if (event.target.classList.contains('tag-clicked')) {
+        event.target.classList.remove('tag-clicked')
+        tagId = ''
+    } else {
+        event.target.classList.add('tag-clicked')
+    }
 
     // 클릭한 tag를 tag-clicked 클래스 추가
     // tagbtn = nodelist
     const tagbtn = document.querySelectorAll('.tag')
     // tagId랑 같은 태그만 클래스 추가
     tagbtn.forEach(function (element) {
-        if (element.id === tagId) {
-            element.classList.add('tag-clicked')
-        } else {
+        if (element.id !== tagId) {
             element.classList.remove('tag-clicked')
         }
     })
@@ -150,8 +159,11 @@ function onAddClick(event) {
 function onCloseClick(event) {
     event.preventDefault()
     todoForm.classList.add('hidden')
-    tagForm.classList.add('hidden')
     addButton.classList.remove('hidden')
+    // tag form
+    tagForm.classList.add('hidden')
+    addTagDiv.classList.remove('hidden')
+    addTagButton.addEventListener('click', onAddTagClick)
     // 높이변화
     addWrap.classList.add('height1')
     addWrap.classList.remove('height2')
@@ -178,6 +190,10 @@ function onTodoSubmit(event) {
     showlist(todoObj)
     saveTodos()
     tagId = ''
+    const tagbtn = document.querySelectorAll('.tag')
+    tagbtn.forEach(element => {
+        element.classList.remove('tag-clicked')
+    });
     
     todoForm.classList.add('hidden')
     tagForm.classList.add('hidden')
@@ -196,12 +212,20 @@ function onTodoSubmit(event) {
 function onAddTagClick(event) {
     event.preventDefault()
     tagForm.classList.remove('hidden')
+    addTagDiv.classList.add('hidden')
+    
+    // tagForm 이벤트 삭제
+    addTagButton.removeEventListener('click', onAddTagClick)
 }
 
 // tagForm 닫기
 function onTagCloseClick(event) {
     event.preventDefault()
     tagForm.classList.add('hidden')
+    addTagDiv.classList.remove('hidden')
+    
+    // tagForm 이벤트 다시 추가
+    addTagButton.addEventListener('click', onAddTagClick)
 }
 
 // tags 객체 저장
@@ -220,10 +244,11 @@ function onTagSubmit(event) {
     }
     tags.push(tagObj)
     showTags(tagObj)
-
+    
     saveTags()
-
+    
     tagForm.classList.add('hidden')
+    addTagDiv.classList.remove('hidden')
 }
 ///////////////////// end : tagForm ///////////////////////
 
