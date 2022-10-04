@@ -5,16 +5,17 @@
     font-family: 'Montserrat', 'Noto Sans KR', sans-serif !important;
     --font1: 'Montserrat', sans-serif;
     --font2: 'Noto Sans KR', sans-serif;
-    --blue1: #3988FF;
+    --blue1: #1b7aff;
     --grey1: #E9E9E9;
     --grey2: #C9C9C9;
     --red1: #FF3E49;
-    --green1: #24EFBE;
+    --green1: #34fde9;
+    --green2: #0ba797;
 }
 
 body h1 {
     font-family: var(--font1);
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
 }
 /* end : font */
@@ -264,7 +265,7 @@ body {
 }
 
 .box h1 {
-    font-size: 24px;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
@@ -419,7 +420,7 @@ body {
     width: auto;
     height: auto;
     font-size: 12px;
-    background-color: #24EFBE;
+    background-color: var(--green1);
     padding: 4px 8px;
     margin-right: 6px;
     border-radius: 10px;
@@ -535,7 +536,7 @@ body {
 }
 
 .tag {
-    background-color: #75ffd6;
+    background-color: var(--green1);
     color: black;
     border: none;
     width: auto;
@@ -554,7 +555,7 @@ body {
 }
 
 .tag-clicked {
-    background-color: #00b48a;
+    background-color: var(--green2);
     color: white;
 }
 
@@ -646,10 +647,13 @@ body {
 }
 
 /* music player */
+#player {
+    display: hidden;
+}
 
 #music {
     width: 100%;
-    height: 165px;
+    height: 213px;
     margin-bottom: 20px;
 }
 
@@ -658,6 +662,15 @@ body {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+}
+
+.head {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.head img {
+    width: 20px;
 }
 
 .music-info {
@@ -704,7 +717,7 @@ body {
 /* weather */
 #weather {
     width: 100%;
-    height: 273px;
+    height: auto;
 }
 
 #weather .wrap {
@@ -716,7 +729,11 @@ body {
 
 #weather .row {
     display: flex;
-    margin-bottom: 21px;
+    /* margin-bottom: 21px; */
+}
+
+#today {
+    margin-bottom: 20px;
 }
 
 .row .left {
