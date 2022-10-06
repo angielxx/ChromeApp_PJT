@@ -653,7 +653,7 @@ body {
 
 #music {
     width: 100%;
-    height: 213px;
+    height: 300px;
     margin-bottom: 20px;
 }
 
@@ -664,21 +664,19 @@ body {
     height: 100%;
 }
 
-.head {
-    display: flex;
-    margin-bottom: 16px;
+/* start : musicForm */
+.musicForm-close {
+    transform: rotate(45deg);
 }
+/* end : musicForm */
 
-.head img {
-    width: 20px;
-}
-
-.music-info {
+.playlist {
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 500;
-    height: 50px;
+    height: 150px;
+    overflow: scroll;
 }
 
 .album-cover {
@@ -702,16 +700,17 @@ body {
     padding: 0px 20px;
 }
 
+
 .shuffle, .repeat {
-    width: 20px;
+    width: 15px;
 }
 
 .back, .next {
-    width: 26px;
+    width: 18px;
 }
 
 .play {
-    width: 36px;
+    width: 20px;
 }
 
 /* weather */
