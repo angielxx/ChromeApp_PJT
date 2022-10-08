@@ -219,7 +219,7 @@ body {
     position: absolute;
     margin-top: 4px;
 }
-.a-bookmark + div button {
+.editBtn, .deleteBtn {
     border: none;
     width: 25px;
     height: 25px;
@@ -232,7 +232,7 @@ body {
 }
 
 /* 삭제 */
-.bookmark-btns button:nth-child(2) {
+.deleteBtn {
     transform: rotate(45deg);
     background-color: var(--red1);
     cursor: pointer;
@@ -678,7 +678,23 @@ body {
     font-weight: 500;
     height: 150px;
     overflow: scroll;
-    font-size: 12px;
+    font-size: 10px;
+}
+
+.playlist::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+}
+
+.playlist::-webkit-scrollbar-thumb {
+    background-color: rgb(151, 151, 151);
+    border-radius: 5px;
+    width: 1px;
+}
+
+.playlist::-webkit-scrollbar-track {
+    background-color: rgb(211, 211, 211);
+    border-radius: 5px;
 }
 
 .music-wrap {
@@ -692,9 +708,6 @@ body {
     cursor: pointer;
 }
 
-.playing {
-    background-color: var(--grey1);
-}
 
 .a-music div {
     width: 14%;
@@ -712,10 +725,24 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-right: 12px;
 }
 
-.timeline {
-    height: 20px;
+.a-music .deleteBtn {
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+}
+
+.a-music .deleteBtn img {
+    width: 12px;
+}
+
+.playing {
+    background-color: var(--grey1);
+    color: #1b7aff;
+    font-weight: 600;
+    font-size: 12px;
 }
 
 .player-btns {

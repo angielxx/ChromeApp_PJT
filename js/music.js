@@ -15,8 +15,10 @@ const CURRENTSONG_KEY = 'currentSong'
 
 // Music obj
 let playlists = [];
-// 현재 재생중인 노래 저장
+// 현재 재생중인 노래 id 저장
 let currentSong = JSON.parse(localStorage.getItem(CURRENTSONG_KEY))
+// 현재 재생중인 노래 인덱스 저장
+let nowPlaying = playlists.findIndex( element => element.youtube_id === currentSong);
 
 function saveCurrentSong(params) {
   localStorage.setItem(CURRENTSONG_KEY, JSON.stringify(currentSong))
@@ -25,20 +27,32 @@ function savePlaylist(params) {
   localStorage.setItem(PLAYLIST_KEY, JSON.stringify(playlists))
 }
 
+// 음악 클릭 시 재생
 function onMusicClick(event) {
-  const youtube_id = event.target.parentNode.id
-  currentSong = youtube_id
-  
-  showCurrentSong()
-  saveCurrentSong();
-}
-
-// 현재 재생 중인 노래 위치에 맞춰 스크롤 위치
-function moveScroll() {
-  const playlist = document.querySelector('.playlist');
-  // const height = playlist.scrollHeight;
-  // let position = 100 / playlists.findIndex(element => element.youtube_id === currentSong)
-  playlist.scrollTop = playlist.scrollHeight;
+  console.log(event)
+  console.log(event.currentTarget)
+  // 음악 이름이나 사진이 클릭되었을 경우
+  if (event.target.tagName == "IMG") {
+    console.log('what')
+  }
+  if (event.target !== event.currentTarget) {
+    // 삭제 버튼 클릭된 경우에는 함수 작동 방지
+    const youtube_id = event.target.parentNode.id
+    currentSong = youtube_id
+    showCurrentSong()
+    saveCurrentSong();
+    nowPlaying = playlists.findIndex( element => element.youtube_id === currentSong)
+    player.loadVideoById(playlists[nowPlaying].youtube_id)
+  } 
+  // id를 가진 a-music이 선택되는 경우
+  else {
+    const youtube_id = event.target.id
+    currentSong = youtube_id
+    showCurrentSong()
+    saveCurrentSong();
+    nowPlaying = playlists.findIndex( element => element.youtube_id === currentSong)
+    player.loadVideoById(playlists[nowPlaying].youtube_id)
+  }
 }
 
 // 현재 재생 중인 노래에 클래스 추가, 아니라면 제거
@@ -53,10 +67,32 @@ function showCurrentSong() {
   })
 }
 
+// 음악 삭제
+function deleteMusic(event) {
+  const theMusic = event.target.parentNode.parentNode
+  theMusic.remove()
+  console.log(playlists)
+  playlists = playlists.filter((element) => element.youtube_id !== parseInt(theMusic.id))
+  console.log(playlists)
+  savePlaylist()
+  // 다음곡으로 넘어가기
+  if(nowPlaying >= playlists.length-1) {
+    nowPlaying = 0;
+  } else {
+    nowPlaying++;
+  }
+  currentSong = playlists[nowPlaying].youtube_id
+  showCurrentSong()
+  saveCurrentSong()
+  player.loadVideoById(playlists[nowPlaying].youtube_id)
+}
+
+// 플레이리스트 보이기
 function showPlaylist(newMusic) {
   // <div class="a-music">
   //       <img>
   //       <span>Title</span>
+  //       
   // </div>
   const playlist = document.querySelector('.playlist .music-wrap')
   const outerDiv = document.createElement('div')
@@ -70,6 +106,17 @@ function showPlaylist(newMusic) {
   outerDiv.appendChild(titleSpan)
   outerDiv.classList.add('a-music')
   outerDiv.id = newMusic.youtube_id
+
+  // delete 버튼
+  const deleteBtn = document.createElement('button')
+  deleteBtn.classList.add('deleteBtn')
+  // deleteBtn.classList.add('hidden')
+  const deleteImg = document.createElement('img')
+  deleteImg.src = './img/icon/plus2.png'
+  deleteBtn.appendChild(deleteImg)
+  outerDiv.appendChild(deleteBtn)
+  // delete 버튼 이벤트 추가
+  deleteBtn.addEventListener('click', deleteMusic)
   
   // 현재 재생 중인 노래라면 클래스 추가
   if (newMusic.youtube_id === currentSong) {
@@ -79,11 +126,11 @@ function showPlaylist(newMusic) {
   // 생성된 음악에 이벤트리스너 추가
   outerDiv.addEventListener('click', onMusicClick)
 }
-moveScroll();
 
 const noEmbed = 'https://noembed.com/embed?url=';
 const urlForm = "https://www.youtube.com/watch?v=";
 
+// musicForm 제출
 function onMusicFormSubmit(event) {
   event.preventDefault();
   var url = linkInput.value;
@@ -179,18 +226,17 @@ function onYouTubeIframeAPIReady() {
       width: 40,
       heigth: 30,
       rel: 0,
-      autoplay: 1,
-      // controls: 0,
+      autoplay: 0,
       showinfo: 1,
       loop: 1,
-      playlist: ' xSn48vDPSzI',
     }
   });
 }
 
 // 동영상 플레이어가 준비되면 재생을 시작해야 함
+// 자동 재생 해제
 function onPlayerReady(event) {
-  event.target.playVideo();
+  // event.target.playVideo();
 }
 
 // 플레이어 상태 변경 시 (일시정지 등)
@@ -231,7 +277,6 @@ function handlePauseBtnClick() {
   }
 }
 
-let nowPlaying = playlists.findIndex( element => element.youtube_id === currentSong)
 function handleNextBtnClick() {
   if(nowPlaying >= playlists.length-1) {
     nowPlaying = 0;
