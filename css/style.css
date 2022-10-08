@@ -648,7 +648,7 @@ body {
 
 /* music player */
 #player {
-    display: hidden;
+    display: none;
 }
 
 #music {
@@ -672,21 +672,46 @@ body {
 
 .playlist {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
     font-weight: 500;
     height: 150px;
     overflow: scroll;
+    font-size: 12px;
 }
 
-.album-cover {
-    width: 50%;
-    height: 50px;
-    background-color: grey;
-    margin-right: 18px;
+.music-wrap {
+    padding: 4%;
 }
-.title {
-    width: 50%;
+
+.a-music {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    cursor: pointer;
+}
+
+.playing {
+    background-color: var(--grey1);
+}
+
+.a-music div {
+    width: 14%;
+    height: 30px;
+    background-size: contain;
+    background-position: center;
+    margin-right: 6%;
+    border-radius: 10px;
+}
+
+.a-music span {
+    width: 70%;
+    height: fit-content;
+    max-height: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .timeline {
@@ -702,15 +727,18 @@ body {
 
 
 .shuffle, .repeat {
+    cursor: pointer;
     width: 15px;
 }
 
 .back, .next {
+    cursor: pointer;
     width: 18px;
 }
 
-.play {
-    width: 20px;
+.pause {
+    cursor: pointer;
+    width: 30px;
 }
 
 /* weather */
