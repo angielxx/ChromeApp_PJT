@@ -74,7 +74,7 @@ let playlists = [];
 playlists = JSON.parse(localStorage.getItem(PLAYLIST_KEY))
 // 현재 재생중인 노래 id 저장
 let currentSong = JSON.parse(localStorage.getItem(CURRENTSONG_KEY))
-if (playlists.length === 0) {
+if (playlists.length == 0) {
   currentSong = '';
   saveCurrentSong()
 }
