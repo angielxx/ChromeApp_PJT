@@ -85,10 +85,10 @@
               <h1>To Do List</h1>
               <hr>
             </div>
-            <div class="box" id="filter">
+            <!-- <div class="box" id="filter">
               <span>All</span>
               <img src="./img/icon/toggle.png" alt="">
-            </div>
+            </div> -->
             <div class="todoBox" id="todo-list">
               <!-- add to-do -->
             </div>
@@ -104,20 +104,22 @@
                 </div>
               </form>
               <form class="addForm hidden">
-                <div class="close-row">
-                  <img src="./img/icon/plus2.png" alt="">
-                </div>
-                <input class="input1" type="text" placeholder="What do you need to do?" required>
-                <div id="plus-button">
-                  <div>
-                    <img src="./img/icon/plus3.png" alt="">
-                    Add new category
+                <div class="innerWrap">
+                  <div class="close-row">
+                    <img src="./img/icon/plus2.png" alt="">
                   </div>
-                </div>
-                <div id="tag-list">
-                  <ul id="select">
-                    <!-- add tags here -->
-                  </ul>
+                  <input class="input1" type="text" placeholder="What do you need to do?" required>
+                  <div id="plus-button">
+                    <div>
+                      <img src="./img/icon/plus3.png" alt="">
+                      Add new category
+                    </div>
+                  </div>
+                  <div id="tag-list">
+                    <ul id="select">
+                      <!-- add tags here -->
+                    </ul>
+                  </div>
                 </div>
                 <div class="save-row">
                   <input type="submit" id="save-button" value="Save">
@@ -134,10 +136,10 @@
             </div>
             <div class="player">
               <div class="head">
-                <button class="plus-btn">
+                <button class="music-plusBtn">
                   <img src="./img/icon/plus2.png" alt="">
                   <form action="" class="musicForm hidden">
-                    <input type="url" name="url">
+                    <input type="url" name="url" placeholder="Type URL of new music">
                     <input type="submit" value="" class="hidden">
                   </form>
                   <img src="./img/icon/plus2.png" alt="" class="musicForm-close hidden">
@@ -148,9 +150,6 @@
                 <div class="music-wrap">
                   <!-- add music here -->
                 </div>
-              </div>
-              <div class="timeline">
-                <hr>
               </div>
               <div class="player-btns">
                 <div>
@@ -170,7 +169,7 @@
 
               <!-- Today weather -->
               <div id="today" class="row">
-                <h4 class="left">Today<br>Weather</h4>
+                <h4 class="left">Today Weather</h4>
                 <div class="right">
                   <div class="today-icon">
                     <!-- add icon here -->
@@ -184,7 +183,7 @@
   
               <!-- Daily Forecast -->
               <div id="daily" class="row">
-                <h4 class="left">Daily<br> Forecast</h4>
+                <h4 class="left">Forecast</h4>
                 <div class="right">
                   <!-- start : for문으로 추가 -->
                   

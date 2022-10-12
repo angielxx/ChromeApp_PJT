@@ -89,22 +89,25 @@ function showlist(newTodo) {
     outerDiv.appendChild(innerDiv)
     outerDiv.appendChild(trashImg)
     innerDiv.appendChild(checkImg)
-    const tag = document.createElement('span')
-    tag.classList.add('tag-on-list')
-    tagObj = localStorage.getItem(TAGS_KEY)
-    const parsedTags = JSON.parse(tagObj)
-    tags = parsedTags
-    // typeof newTodo.tag = string
-    let theTag = tags.find((tag) => tag.id === parseInt(newTodo.tag))
-    if (newTodo.tag !== '') {
-        tag.innerText = theTag.text
-        innerDiv.appendChild(tag)
-    } else {
-        tag.innerText = ''
-    }
 
+    // 태그 카테고리 추가
+    if (newTodo.tag != '') {
+        const tag = document.createElement('span')
+        tag.classList.add('tag-on-list')
+        // typeof newTodo.tag = string
+        let theTag = tags.find((tag) => tag.id === parseInt(newTodo.tag))
+        tag.innerText = newTodo.tag
+        innerDiv.appendChild(tag)
+    }
     innerDiv.appendChild(span)
     todoList.appendChild(outerDiv)
+}
+
+function deleteTag(event) {
+    const theTag = event.target.parentNode.parentNode
+    theTag.remove()
+    tags = tags.filter((element) => element.id != theTag.id)
+    saveTags()
 }
 
 // todoForm 열고 닫을 때 선택된 tag 없애기 위해 위로 이동
@@ -116,8 +119,18 @@ function showTags(newTag) {
     option.value = newTag.text
     option.innerText = newTag.text
 
+    const tagDeleteBtn = document.createElement('div')
+    tagDeleteBtn.classList.add('tagDeleteBtn')
+    const deleteImg = document.createElement('img')
+    deleteImg.src = './img/icon/plus2.png'
+    tagDeleteBtn.appendChild(deleteImg)
+
+    option.appendChild(tagDeleteBtn)
     tagList.prepend(option)
     option.addEventListener('click', onTagClick)
+
+    // delete 버튼 이벤트 추가
+    tagDeleteBtn.addEventListener('click', deleteTag)
 }
 
 ////todoForm에서 tag 선택 시
@@ -126,23 +139,26 @@ tagId = ''
 
 // tag 클릭 시 전역변수 tagId 변경
 function onTagClick(event) {
-    tagId = event.target.id
-    if (event.target.classList.contains('tag-clicked')) {
-        event.target.classList.remove('tag-clicked')
-        tagId = ''
-    } else {
-        event.target.classList.add('tag-clicked')
-    }
-
-    // 클릭한 tag를 tag-clicked 클래스 추가
-    // tagbtn = nodelist
-    const tagbtn = document.querySelectorAll('.tag')
-    // tagId랑 같은 태그만 클래스 추가
-    tagbtn.forEach(function (element) {
-        if (element.id !== tagId) {
-            element.classList.remove('tag-clicked')
+    // 조건 : 태그 삭제 버튼 누를 때 이벤트 방지
+    if (event.target === event.currentTarget) {
+        tagId = event.target.id
+        if (event.target.classList.contains('tag-clicked')) {
+            event.target.classList.remove('tag-clicked')
+            tagId = ''
+        } else {
+            event.target.classList.add('tag-clicked')
         }
-    })
+    
+        // 클릭한 tag를 tag-clicked 클래스 추가
+        // tagbtn = nodelist
+        const tagbtn = document.querySelectorAll('.tag')
+        // tagId랑 같은 태그만 클래스 추가
+        tagbtn.forEach(function (element) {
+            if (element.id !== tagId) {
+                element.classList.remove('tag-clicked')
+            }
+        })
+    }
 }
 
 // todoForm 열기
@@ -177,18 +193,22 @@ function onCloseClick(event) {
 
 // todoForm 제출
 function onTodoSubmit(event) {
-    event.preventDefault()
-    const newTodo = todoInput.value
-    todoInput.value = ''
+    event.preventDefault();
+    const newTodo = todoInput.value;
+    todoInput.value = '';
+    const tagName = '';
+    if (tagId != '') {
+        tagName = tags.find((element) => element.id == parseInt(tagId)).text  
+    } 
     const todoObj = {
         text: newTodo,
-        tag: tagId,
+        tag: tagName,
         status: 'unchecked',
         id: Date.now()
     }
     toDos.push(todoObj)
-    showlist(todoObj)
     saveTodos()
+    showlist(todoObj)
     tagId = ''
     const tagbtn = document.querySelectorAll('.tag')
     tagbtn.forEach(element => {
@@ -210,17 +230,21 @@ function onTodoSubmit(event) {
 
 // tagForm 열기
 function onAddTagClick(event) {
-    event.preventDefault()
-    tagForm.classList.remove('hidden')
-    addTagDiv.classList.add('hidden')
-    
-    // tagForm 이벤트 삭제
-    addTagButton.removeEventListener('click', onAddTagClick)
+    if (tags.length >= 5) {
+        alert('태그는 5개까지 추가할 수 있습니다.')
+    } else {
+        console.log(event.target)
+        console.log(event.currentTarget)
+        tagForm.classList.remove('hidden')
+        addTagDiv.classList.add('hidden')
+        
+        // tagForm 이벤트 삭제
+        addTagButton.removeEventListener('click', onAddTagClick)
+    }
 }
 
 // tagForm 닫기
-function onTagCloseClick(event) {
-    event.preventDefault()
+function onTagCloseClick() {
     tagForm.classList.add('hidden')
     addTagDiv.classList.remove('hidden')
     
@@ -244,11 +268,8 @@ function onTagSubmit(event) {
     }
     tags.push(tagObj)
     showTags(tagObj)
-    
     saveTags()
-    
-    tagForm.classList.add('hidden')
-    addTagDiv.classList.remove('hidden')
+    onTagCloseClick()
 }
 ///////////////////// end : tagForm ///////////////////////
 

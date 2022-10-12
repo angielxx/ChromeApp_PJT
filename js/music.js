@@ -57,8 +57,8 @@ function stopVideo() {
 ////////////////////////////////// start : musicForm
 
 // plus 버튼 관련
-const musicAddBtn = document.querySelector('.player .plus-btn');
-const addImg = document.querySelector('.plus-btn img');
+const musicAddBtn = document.querySelector('.player .music-plusBtn');
+const addImg = document.querySelector('.music-plusBtn img');
 const playlistHeading = document.querySelector('.player h1');
 const closeBtn = document.querySelector('.musicForm-close');
 // musicForm 관련
@@ -71,9 +71,10 @@ const CURRENTSONG_KEY = 'currentSong'
 
 // Music obj
 let playlists = [];
+playlists = JSON.parse(localStorage.getItem(PLAYLIST_KEY))
 // 현재 재생중인 노래 id 저장
 let currentSong = JSON.parse(localStorage.getItem(CURRENTSONG_KEY))
-if (playlists.length < 1) {
+if (playlists.length === 0) {
   currentSong = '';
   saveCurrentSong()
 }
@@ -95,14 +96,13 @@ function onMusicClick(event) {
   // 음악 이름이나 사진이 클릭되었을 경우
   if (event.target.tagName !== "IMG") {
     if (event.target !== event.currentTarget) {
-      console.log('NO!')
       const youtube_id = event.target.parentNode.id
       currentSong = youtube_id
       showCurrentSong()
       saveCurrentSong();
       nowPlaying = playlists.findIndex( element => element.youtube_id === currentSong)
       player.loadVideoById(playlists[nowPlaying].youtube_id)
-      handlePauseBtnClick();
+      playMusic();
     }
     // id를 가진 a-music이 선택되는 경우
     else {
@@ -112,7 +112,7 @@ function onMusicClick(event) {
         saveCurrentSong();
         nowPlaying = playlists.findIndex( element => element.youtube_id === currentSong);
         player.loadVideoById(playlists[nowPlaying].youtube_id);
-        handlePauseBtnClick();
+        playMusic();
       }
     }
   } 
@@ -123,6 +123,7 @@ function deleteMusic(event) {
   theMusic.remove()
   playlists = playlists.filter((element) => element.youtube_id !== theMusic.id)
   savePlaylist()
+  nowPlaying = 0;
   // 새롭게 현재 재생중인 음악 저장
   if (playlists.length > 0) {
     currentSong = playlists[nowPlaying].youtube_id
@@ -131,6 +132,7 @@ function deleteMusic(event) {
   }
   saveCurrentSong()
   showCurrentSong()
+  pauseMusic()
   player.loadVideoById(playlists[nowPlaying].youtube_id)
 }
 
@@ -191,8 +193,10 @@ const urlForm = "https://www.youtube.com/watch?v=";
 
 // musicForm 제출
 function onMusicFormSubmit(event) {
+  console.log('submitted')
   event.preventDefault();
   var url = linkInput.value;
+  linkInput.value = ''
 
   // 유튜브 URL에서 영상 id 정규식
   var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
@@ -222,7 +226,8 @@ function onMusicFormSubmit(event) {
 
 // url 추가 버튼 누르면 musicForm 보이기
 function onAddClick(event) {
-  musicAddBtn.classList.add('plus-form');
+  event.preventDefault()
+  musicAddBtn.classList.add('music-add-form');
   musicForm.classList.remove('hidden');
   addImg.classList.add('hidden');
   playlistHeading.classList.add('hidden');
@@ -232,12 +237,15 @@ function onAddClick(event) {
 
 // musicForm 닫기
 function onCloselick(event) {
-  musicAddBtn.classList.remove('plus-form');
+  musicAddBtn.classList.remove('music-add-form');
   musicForm.classList.add('hidden');
   addImg.classList.remove('hidden');
-  playlistHeading.classList.remove('hidden');
   closeBtn.classList.add('hidden');
-  musicAddBtn.addEventListener('click', onAddClick);
+  setTimeout(function() {
+    playlistHeading.classList.remove('hidden');
+  }, 500)
+  // musicAddBtn.addEventListener('click', onAddClick);
+  console.log(event)
 }
 
 const savedPlaylists = localStorage.getItem(PLAYLIST_KEY) 
@@ -249,7 +257,7 @@ if (savedPlaylists != null) {
 }
 
 // musicForm 열기 
-musicAddBtn.addEventListener('click', onAddClick);
+addImg.addEventListener('click', onAddClick);
 // musicForm 닫기
 closeBtn.addEventListener('click', onCloselick);
 
@@ -271,6 +279,18 @@ function onPlayerStateChange(event) {
       handleNextBtnClick();
       event.target.playVideo();
   }
+}
+
+function playMusic() {
+  player.playVideo();
+  pause = true;
+  pauseButton.src = "./img/icon/pause.png"
+}
+
+function pauseMusic() {
+  player.pauseVideo();
+  pause = false;
+  pauseButton.src = "./img/icon/play.png";
 }
 
 function handlePauseBtnClick() {
