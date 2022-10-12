@@ -72,13 +72,7 @@ const CURRENTSONG_KEY = 'currentSong'
 // Music obj
 let playlists = [];
 let currentSong = JSON.parse(localStorage.getItem(CURRENTSONG_KEY))
-// playlists = JSON.parse(localStorage.getItem(PLAYLIST_KEY))
-// console.log(playlists)
-// // 현재 재생중인 노래 id 저장
-// if (playlists.length == 0) {
-//   currentSong = '';
-//   saveCurrentSong()
-// }
+
 // 현재 재생중인 노래 인덱스 저장
 let nowPlaying = playlists.findIndex( element => element.youtube_id === currentSong);
 // 재생 상태
@@ -129,21 +123,16 @@ function deleteMusic(event) {
   saveCurrentSong()
   showCurrentSong()
   pauseMusic()
+  player.loadVideoById('')
 }
 
 // 플레이리스트 보이기
 function showPlaylist(newMusic) {
-  // <div class="a-music">
-  //       <img>
-  //       <span>Title</span>
-  //       
-  // </div>
   const playlist = document.querySelector('.playlist .music-wrap')
   const outerDiv = document.createElement('div')
   const titleSpan = document.createElement('span')
   const imgDiv = document.createElement('div')
-  // const img = new Image;
-  // img.src = newMusic.thumb
+
   titleSpan.innerText = newMusic.title
   imgDiv.style.backgroundImage = `url(${newMusic.thumb})`;
   outerDiv.appendChild(imgDiv)
