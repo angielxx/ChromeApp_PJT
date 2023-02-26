@@ -1,4 +1,4 @@
-<img src="https://velog.velcdn.com/images/94applekoo/post/3e03cde5-0a4b-45e9-94e2-cfbadc280f4a/image.gif">
+<img src="./assets/main.gif">
 
 ## 📋 프로젝트 개요
 
@@ -70,11 +70,12 @@
 
 #### 투두리스트
 
-<img src="https://velog.velcdn.com/images/94applekoo/post/83577998-9005-41ab-ac90-19e3511f30b1/image.gif">
+<img src="./assets/todolist.gif">
 
 투두리스트의 +버튼을 누르면 버튼이 입력창(form)으로 바뀌는 애니메이션을 구현했습니다. 각각 다른 높이를 지정할 수 있는 클래스를 CSS에서 정의하여 버튼 클릭시 더 큰 높이를 지정하는 클래스를 추가햤습니다. CSS에서 transition을 설정하여 애니메이션을 구현했습니다.
 
 할일을 추가하는 입력창 안에서 카테고리 태그를 추가할 수 있는 form을 넣었습니다. html 구조 상 form안에 form을 넣을 수 없기 때문에 CSS에서 position을 absolute로 하여 할일 추가 form 안에 있는 것처럼 보이도록 했습니다.
+<br/>
 
 #### 음악 플레이어
 
@@ -83,6 +84,7 @@
 유튜브 영상의 URL을 입력하면 URL에서 정규표현식으로 영상 id를 받아왔습니다. 영상 id로 유튜브 영상 ID, 영상 제목, 썸네일 URL을 가져와 로컬 스토리지에 저장하고 각각 플레이리스트에 보여질 수 있게 했습니다.
 
 플레이리스트에서 현재 재생되고 있는 음악을 표시하도록 했습니다. 음악을 선택하면 해당 영상의 id로 로컬 스토리지의 값을 업데이트하고, 각 음악의 id가 현재 재생 중인 영상의 id와 같으면 하이라이트하는 CSS 속성을 가진 클래스가 추가되도록 했습니다.
+<br/>
 
 #### 북마크
 
