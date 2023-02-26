@@ -1,3 +1,6 @@
+<img src="https://velog.velcdn.com/images/94applekoo/post/3e03cde5-0a4b-45e9-94e2-cfbadc280f4a/image.gif">
+
+
 ## 📋 프로젝트 개요
 > **프로젝트명** : 크롬앱 <br/>
 **개발 기간** : 2022년 10월 1일 ~ 2022년 10월 14일 (2주)  <br/>
