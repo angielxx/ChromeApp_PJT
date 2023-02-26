@@ -68,7 +68,7 @@
 
 ## 🌃 기능 상세 및 실제 화면
 
-#### 투두리스트
+### 투두리스트
 
 <img src="./assets/todolist.gif">
 
@@ -77,7 +77,7 @@
 할일을 추가하는 입력창 안에서 카테고리 태그를 추가할 수 있는 form을 넣었습니다. html 구조 상 form안에 form을 넣을 수 없기 때문에 CSS에서 position을 absolute로 하여 할일 추가 form 안에 있는 것처럼 보이도록 했습니다.
 <br/>
 
-#### 음악 플레이어
+### 음악 플레이어
 
 <img src="https://velog.velcdn.com/images/94applekoo/post/d068176d-85b5-4dd4-8449-f8150bb52692/image.gif">
 
@@ -86,7 +86,7 @@
 플레이리스트에서 현재 재생되고 있는 음악을 표시하도록 했습니다. 음악을 선택하면 해당 영상의 id로 로컬 스토리지의 값을 업데이트하고, 각 음악의 id가 현재 재생 중인 영상의 id와 같으면 하이라이트하는 CSS 속성을 가진 클래스가 추가되도록 했습니다.
 <br/>
 
-#### 북마크
+### 북마크
 
 <img src="https://velog.velcdn.com/images/94applekoo/post/2eae8b63-d0eb-4f0a-adbc-bd83b1d37405/image.gif">
 
